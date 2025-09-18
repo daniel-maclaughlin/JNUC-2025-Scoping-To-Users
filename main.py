@@ -5,21 +5,29 @@ from jamf_pro_devices import get_jamf_pro_devices
 from jamf_pro_computer_groups import add_computer_to_group, remove_computer_from_group
 from jamf_pro_mobile_groups import add_device_to_group, remove_device_from_group
 
+# This section would typically be another function to receive email input
+# Insert your email here to check group memberships
 email = 'sara.newman@jamfse.io'
 
+# Acquire tokens
 intune_token = get_access_token()
 jamf_pro_auth_token = get_jamf_pro_auth_token()
 
 
+# Function to compare two lists and determine additions/removals
 def sync_lists(source_list, target_list):
     to_add = list(set(source_list) - set(target_list))
     to_remove = list(set(target_list) - set(source_list))
     return to_add, to_remove
 
 
+# Main logic
+# Ensure tokens are acquired
 if not intune_token or not jamf_pro_auth_token:
     print('Failed to acquire access token.')
     exit(1)
+
+# Get user details from Entra ID
 user_data = get_user_details(intune_token, email)
 entra_team_groups = []
 if user_data:
@@ -34,6 +42,7 @@ if user_data:
     else:
         user_data['groups'] = []
 
+# For each Entra User group, check Jamf Pro group memberships for computers and devices
 for entra_group in entra_team_groups:
     print(f"User: {email} Member of Group: {entra_group} according to Entra")
     print('############ Checking Jamf Pro for Computers Group Membership: ############')

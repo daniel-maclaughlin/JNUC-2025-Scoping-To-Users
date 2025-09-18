@@ -3,12 +3,14 @@ from dotenv import load_dotenv
 import requests
 import msal
 
+# Load environment variables from .env file
 load_dotenv()
 tenant_id = os.getenv("TENANT_ID")
 client_id = os.getenv("CLIENT_ID")
 secret_value = os.getenv("SECRET_VALUE")
 
 
+# Function to get Microsoft Graph API access token
 def get_access_token():
     authority = f"https://login.microsoftonline.com/{tenant_id}"
     scope = ["https://graph.microsoft.com/.default"]
@@ -47,7 +49,7 @@ def get_all_user_groups(access_token, user_id):
         return None
 
 
-
+# Get user details by email from Microsoft Graph API
 def get_user_details(access_token, user_email):
     graph_url = "https://graph.microsoft.com/v1.0"
     url = f"{graph_url}/users?$filter=userPrincipalName eq '{user_email}'"

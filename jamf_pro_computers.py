@@ -2,12 +2,13 @@ import os
 from dotenv import load_dotenv
 from jamf_session import jamf_session
 
-
 json_header_type = 'application/json'
+# Load environment variables from .env file
 load_dotenv()
 jamf_pro_url = os.getenv("JAMF_PRO_URL")
 
 
+# Function to get all computers for a specific user by email
 def get_jamf_pro_computers(jamf_pro_token, username):
     """
     Retrieve all computers from Jamf Pro that match the given email.

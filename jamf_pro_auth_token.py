@@ -1,13 +1,16 @@
 import os
 from dotenv import load_dotenv
+# Import the jamf_session from the jamf_session module for persistent sessions
 from jamf_session import jamf_session
 
+# Load environment variables from .env file
 load_dotenv()
 jamf_pro_url = os.getenv("JAMF_PRO_URL")
 jamf_pro_client_id = os.getenv("JAMF_PRO_CLIENT_ID")
 jamf_pro_client_secret = os.getenv("JAMF_PRO_CLIENT_SECRET")
 
 
+# Function to get Jamf Pro authentication token
 def get_jamf_pro_auth_token():
     """
     Get a Jamf Pro authentication token using client credentials.

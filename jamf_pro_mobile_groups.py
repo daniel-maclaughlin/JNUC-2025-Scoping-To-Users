@@ -19,6 +19,7 @@ def build_device_group_xml(group_name):
     return ET.tostring(mobile_device_group, encoding='utf-8', method='xml').decode('utf-8')
 
 
+# Function to create the XML for adding devices from the static group
 def build_device_addition_xml(device_id):
     mobile_device_group = ET.Element('mobile_device_group')
     mobile_device_additions = ET.SubElement(mobile_device_group, 'mobile_device_additions')
@@ -28,6 +29,7 @@ def build_device_addition_xml(device_id):
     return ET.tostring(mobile_device_group, encoding='utf-8', method='xml').decode('utf-8')
 
 
+# Function to create the XML for removing devices from the static group
 def build_computer_removal_xml(device_id):
     mobile_device_group = ET.Element('mobile_device_group')
     mobile_device_deletions = ET.SubElement(mobile_device_group, 'mobile_device_deletions')
@@ -37,6 +39,7 @@ def build_computer_removal_xml(device_id):
     return ET.tostring(mobile_device_group, encoding='utf-8', method='xml').decode('utf-8')
 
 
+# Function to create a static computer group in Jamf Pro
 def create_static_computer_group(jamf_pro_token, group_name):
     """
     Create a static computer group in Jamf Pro.
@@ -62,6 +65,7 @@ def create_static_computer_group(jamf_pro_token, group_name):
         return None
 
 
+# Function to get the ID of a static computer group by name
 def get_group_id(jamf_pro_token, group_name):
     """
     Retrieve the ID of a static computer group by its name.
@@ -90,6 +94,7 @@ def get_group_id(jamf_pro_token, group_name):
         return None
 
 
+# Function to add a device to a static group in Jamf Pro
 def add_device_to_group(jamf_pro_token, group_name, device_id, group_id=None):
     """
     Add a device to a static group in Jamf Pro.
@@ -112,6 +117,7 @@ def add_device_to_group(jamf_pro_token, group_name, device_id, group_id=None):
         return None
 
 
+# Function to remove a device from a static group in Jamf Pro
 def remove_device_from_group(jamf_pro_token, group_name, device_id, group_id=None):
     """
     Remove a device from a static group in Jamf Pro.

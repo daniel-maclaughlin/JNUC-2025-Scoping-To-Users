@@ -6,6 +6,7 @@ from jamf_session import jamf_session
 
 xml_header_type = 'application/xml'
 json_header_type = 'application/json'
+# Load environment variables from .env file
 load_dotenv()
 jamf_pro_url = os.getenv("JAMF_PRO_URL")
 
@@ -18,6 +19,7 @@ def build_computer_group_xml(group_name):
     return ET.tostring(computer_group, encoding='utf-8', method='xml').decode('utf-8')
 
 
+# Function to create the XML for adding computers from the static group
 def build_computer_addition_xml(computer_id):
     computer_group = ET.Element('computer_group')
     computer_addition = ET.SubElement(computer_group, 'computer_additions')
@@ -27,6 +29,7 @@ def build_computer_addition_xml(computer_id):
     return ET.tostring(computer_group, encoding='utf-8', method='xml').decode('utf-8')
 
 
+# Function to create the XML for removing computers from the static group
 def build_computer_removal_xml(computer_id):
     computer_group = ET.Element('computer_group')
     computer_addition = ET.SubElement(computer_group, 'computer_deletions')
@@ -36,6 +39,7 @@ def build_computer_removal_xml(computer_id):
     return ET.tostring(computer_group, encoding='utf-8', method='xml').decode('utf-8')
 
 
+# Function to create a static computer group in Jamf Pro
 def create_static_computer_group(jamf_pro_token, group_name):
     """
     Create a static computer group in Jamf Pro.
@@ -61,6 +65,7 @@ def create_static_computer_group(jamf_pro_token, group_name):
         return None
 
 
+# Function to get the ID of a static computer group by name
 def get_group_id(jamf_pro_token, group_name):
     """
     Retrieve the ID of a static computer group by its name.
@@ -88,6 +93,7 @@ def get_group_id(jamf_pro_token, group_name):
         return None
 
 
+# Function to add a computer to a static group
 def add_computer_to_group(jamf_pro_token, group_name, computer_id, group_id=None):
     """
     Add a computer to a static group in Jamf Pro.
@@ -110,6 +116,7 @@ def add_computer_to_group(jamf_pro_token, group_name, computer_id, group_id=None
         return None
 
 
+# Function to remove a computer from a static group
 def remove_computer_from_group(jamf_pro_token, group_name, computer_id, group_id=None):
     """
     Remove a computer from a static group in Jamf Pro.
@@ -130,4 +137,3 @@ def remove_computer_from_group(jamf_pro_token, group_name, computer_id, group_id
     except jamf_session.exceptions.RequestException as error:
         print(f'Error removing computer from group: {error}')
         return None
-
