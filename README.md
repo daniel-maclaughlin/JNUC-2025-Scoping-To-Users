@@ -17,3 +17,5 @@ you will find the sample script used in the presentation to leverage the Jamf Pr
 - `jamf_pro_computers.py` \- Script to get all computers assigned to a specific user in Jamf Pro.
 - `jamf_pro_mobile_groups.py` \- Script that checks for the existence of a mobile device group in Jamf Pro and creates it if it doesn't exist. Adds or removes devices from the group based on the provided list of device IDs.
 - `jamf_pro_computer_groups.py` \- Script that checks for the existence of a computer group in Jamf Pro and creates it if it doesn't exist. Adds or removes computers from the group based on the provided list of computer IDs.
+
+![Return back to Resources](https://jamf-view.highspot.com/viewer/45e7c309a9eda5295cc435083c288303)
